@@ -1,0 +1,14 @@
+[project]
+name = "depth"
+version = "0.1.0"
+description = "Library for unsupervised depth estimation"
+readme = "README.md"
+authors = [
+    { name = "Angus Stewart", email = "siliconlad@protonmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.9.16,<0.10.0"]
+build-backend = "uv_build"
