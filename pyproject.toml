@@ -6,9 +6,21 @@ readme = "README.md"
 authors = [
     { name = "Angus Stewart", email = "siliconlad@protonmail.com" }
 ]
-requires-python = ">=3.10"
-dependencies = []
+requires-python = ">=3.11"
+dependencies = [
+    "tinygrad>=0.12.0",
+    "track-sdk>=0.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+]
 
 [build-system]
 requires = ["uv_build>=0.9.16,<0.10.0"]
 build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
