@@ -1,0 +1,8 @@
+version: "3"
+
+tasks:
+  sync:
+    desc: Sync uv environment and install pyzed
+    cmds:
+      - uv sync
+      - uv run --script scripts/install_pyzed.py
