@@ -6,3 +6,8 @@ tasks:
     cmds:
       - uv sync
       - uv run --script scripts/install_pyzed.py
+
+  record:
+    desc: Record stereo pairs from ZED camera to MCAP
+    cmds:
+      - uv run python scripts/record_pyzed.py {{.CLI_ARGS}}

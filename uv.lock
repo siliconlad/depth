@@ -16,6 +16,8 @@ name = "depth"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "pillow" },
+    { name = "pybag-sdk" },
     { name = "tinygrad" },
     { name = "track-sdk" },
 ]
@@ -28,6 +30,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "pillow" },
+    { name = "pybag-sdk", specifier = ">=0.13.0" },
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "ruff", marker = "extra == 'dev'" },
     { name = "tinygrad", specifier = ">=0.12.0" },
