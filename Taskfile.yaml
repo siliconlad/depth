@@ -11,6 +11,10 @@ tasks:
     desc: Record stereo pairs from ZED camera to MCAP
     cmd: uv run python scripts/record_pyzed.py {{.CLI_ARGS}}
 
+  snapshot:
+    desc: Capture a stereo pair from ZED camera
+    cmd: uv run python scripts/capture_pyzed.py {{.CLI_ARGS}}
+
   test:
     desc: Run all tests
     cmd: uv run pytest -s tests {{.CLI_ARGS}}
