@@ -1,6 +1,6 @@
 from tinygrad.tensor import Tensor
 
-from depth.models.encoder import ResidualEncoder
+from depth.model.encoder import ResidualEncoder
 
 
 class TestImageEncoder:
@@ -15,7 +15,7 @@ class TestImageEncoder:
     def test_output_channels(self):
         x = Tensor.randn(1, 3, 256, 256)
         stem, l1, l2, l3, l4 = self.encoder(x)
-        assert stem.shape == (1, 64, 64, 64)
+        assert stem.shape == (1, 64, 128, 128)
         assert l1.shape == (1, 64, 64, 64)
         assert l2.shape == (1, 128, 32, 32)
         assert l3.shape == (1, 256, 16, 16)

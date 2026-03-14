@@ -51,21 +51,27 @@ class ResidualLayer:
 
 class ResidualEncoder:
     def __init__(self):
-        self._stem = ResidualStem(3, 64)
+        self._stem_conv2d = Conv2d(3, 64, kernel_size=7, stride=2, padding=3)
+        self._stem_batch_norm = BatchNorm(64)
+
         self._layer_1 = ResidualLayer(64, 64)
         self._layer_2 = ResidualLayer(64, 128, stride=2)
         self._layer_3 = ResidualLayer(128, 256, stride=2)
         self._layer_4 = ResidualLayer(256, 512, stride=2)
 
 
-    def __call__(self, images: Tensor):
+    def __call__(self, images: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
         """
         :param images: Tensor of shape (B, C, H, W)
         """
-        stem = self._stem(images)
+
+        layer_0 = self._stem_batch_norm(self._stem_conv2d(images)).relu()
+        stem = layer_0.max_pool2d(kernel_size=(3, 3), stride=2, padding=1)
+        assert isinstance(stem, Tensor), 'Expected tensor!'
+
         layer_1 = self._layer_1(stem)
         layer_2 = self._layer_2(layer_1)
         layer_3 = self._layer_3(layer_2)
         layer_4 = self._layer_4(layer_3)
 
-        return stem, layer_1, layer_2, layer_3, layer_4
+        return layer_0, layer_1, layer_2, layer_3, layer_4
