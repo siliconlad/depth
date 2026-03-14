@@ -1,13 +1,20 @@
 version: "3"
 
 tasks:
-  sync:
+  sync-all:
     desc: Sync uv environment and install pyzed
     cmds:
-      - uv sync
+      - uv sync --extra dev
       - uv run --script scripts/install_pyzed.py
 
   record:
     desc: Record stereo pairs from ZED camera to MCAP
-    cmds:
-      - uv run python scripts/record_pyzed.py {{.CLI_ARGS}}
+    cmd: uv run python scripts/record_pyzed.py {{.CLI_ARGS}}
+
+  test:
+    desc: Run all tests
+    cmd: uv run pytest -s tests
+
+  test-setup:
+    desc: Test to make sure that the current setup works
+    cmd: uv run pytest tests/test_setup.py
