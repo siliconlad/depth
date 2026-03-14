@@ -13,8 +13,12 @@ tasks:
 
   test:
     desc: Run all tests
-    cmd: uv run pytest -s tests
+    cmd: uv run pytest -s tests {{.CLI_ARGS}}
 
-  test-setup:
+  test-gpu:
     desc: Test to make sure that the current setup works
     cmd: uv run pytest tests/test_setup.py
+
+  test-camera:
+    desc: Test to make sure that the camera connection works
+    cmd: uv run pytest -m "" tests/test_setup.py::test_camera

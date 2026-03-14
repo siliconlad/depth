@@ -24,5 +24,9 @@ dev = [
 requires = ["uv_build>=0.9.16,<0.10.0"]
 build-backend = "uv_build"
 
+[tool.pytest.ini_options]
+addopts = "-m 'not camera'"
+markers = ["camera: requires ZED camera hardware"]
+
 [tool.ruff]
 line-length = 100
