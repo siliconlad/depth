@@ -3,7 +3,7 @@
 .claude
 .zed
 
-data/
+/data
 __pycache__
 
 CLAUDE.md

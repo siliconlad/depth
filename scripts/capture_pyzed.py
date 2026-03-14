@@ -82,7 +82,7 @@ def capture(args: argparse.Namespace) -> None:
     calibration = {
         "image_width": w,
         "image_height": h,
-        "baseline_m": baseline_m,
+        "baseline": baseline_m,
         "left": {
             "fx": left_params.fx,
             "fy": left_params.fy,

@@ -12,6 +12,7 @@ dependencies = [
     "track-sdk>=0.2.0",
     "pybag-sdk>=0.13.0",
     "pillow",
+    "pydantic>=2.12.5",
 ]
 
 [project.optional-dependencies]

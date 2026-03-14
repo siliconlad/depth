@@ -515,17 +515,6 @@ Since you won't have LiDAR ground truth for your room:
 
 ---
 
-## Quick Reference: Verifying Your GPU Setup
-
-```bash
-# Check that tinygrad sees your GPU
-CUDA=1 python -c "from tinygrad import Device; print(Device.DEFAULT)"
-# Should print "CUDA"
-
-# Quick smoke test
-CUDA=1 python -c "from tinygrad import Tensor; print((Tensor.randn(2,3) @ Tensor.randn(3,2)).numpy())"
-```
-
 ## Quick Reference: track-sdk Usage
 
 ```python
