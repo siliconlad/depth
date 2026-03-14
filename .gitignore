@@ -1,4 +1,9 @@
 .venv
+.pytest_cache
 .claude
 .zed
+
 __pycache__
+
+CLAUDE.md
+AGENTS.md
