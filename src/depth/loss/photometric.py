@@ -15,10 +15,10 @@ def ssim_loss(value: Tensor, expected: Tensor) -> Tensor:
     c_2 = 0.03**2
 
     mu_x = value.avg_pool2d((3, 3), stride=1, padding=1)
-    var_x = (value ** 2).avg_pool2d((3, 3), stride=1, padding=1) - mu_x**2
+    var_x = (value**2).avg_pool2d((3, 3), stride=1, padding=1) - mu_x**2
 
     mu_y = expected.avg_pool2d((3, 3), stride=1, padding=1)
-    var_y = (expected ** 2).avg_pool2d((3, 3), stride=1, padding=1) - mu_y**2
+    var_y = (expected**2).avg_pool2d((3, 3), stride=1, padding=1) - mu_y**2
 
     sigma_xy = (value * expected).avg_pool2d((3, 3), stride=1, padding=1) - (mu_x * mu_y)
 

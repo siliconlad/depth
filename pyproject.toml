@@ -31,3 +31,8 @@ markers = ["camera: requires ZED camera hardware"]
 
 [tool.ruff]
 line-length = 100
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+]

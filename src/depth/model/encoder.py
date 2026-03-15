@@ -10,7 +10,7 @@ class ResidualBlock:
         self._batch_norm_a = BatchNorm(c_out)
         self._batch_norm_b = BatchNorm(c_out)
 
-        self._dim_same = c_in == c_out and stride==1
+        self._dim_same = c_in == c_out and stride == 1
         if not self._dim_same:
             self._skip_conv2d = Conv2d(c_in, c_out, kernel_size=1, stride=stride)
             self._skip_batch_norm = BatchNorm(c_out)
@@ -35,7 +35,7 @@ class ResidualStem:
         temp = self._stem_batch_norm(temp)
         temp = temp.relu()
         temp = temp.max_pool2d(kernel_size=(3, 3), stride=2, padding=1)
-        assert isinstance(temp, Tensor), 'Expected tensor!'
+        assert isinstance(temp, Tensor), "Expected tensor!"
         return temp
 
 
@@ -59,7 +59,6 @@ class ResidualEncoder:
         self._layer_3 = ResidualLayer(128, 256, stride=2)
         self._layer_4 = ResidualLayer(256, 512, stride=2)
 
-
     def __call__(self, images: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
         """
         :param images: Tensor of shape (B, C, H, W)
@@ -67,7 +66,7 @@ class ResidualEncoder:
 
         layer_0 = self._stem_batch_norm(self._stem_conv2d(images)).relu()
         stem = layer_0.max_pool2d(kernel_size=(3, 3), stride=2, padding=1)
-        assert isinstance(stem, Tensor), 'Expected tensor!'
+        assert isinstance(stem, Tensor), "Expected tensor!"
 
         layer_1 = self._layer_1(stem)
         layer_2 = self._layer_2(layer_1)

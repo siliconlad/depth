@@ -150,7 +150,9 @@ def main():
 
     # Build wheel filename and URL
     cp_tag = f"cp{py_major}{py_minor}"
-    whl_name = f"pyzed-{sdk_major}.{sdk_minor}-{cp_tag}-{cp_tag}-{whl_platform}_{ARCH_VERSION.lower()}.whl"
+    whl_name = (
+        f"pyzed-{sdk_major}.{sdk_minor}-{cp_tag}-{cp_tag}-{whl_platform}_{ARCH_VERSION.lower()}.whl"
+    )
     whl_url = f"{BASE_URL}{sdk_major}.{sdk_minor}/whl/{os_version}/{whl_name}"
 
     print(f"\n-> Downloading {whl_url}")
@@ -177,12 +179,17 @@ def main():
 
         print(f"-> Installing into {venv_path}")
         try:
-            subprocess.check_call([
-                "uv", "pip", "install",
-                "--python", str(venv_path / "bin" / "python"),
-                "--force-reinstall",
-                whl_path,
-            ])
+            subprocess.check_call(
+                [
+                    "uv",
+                    "pip",
+                    "install",
+                    "--python",
+                    str(venv_path / "bin" / "python"),
+                    "--force-reinstall",
+                    whl_path,
+                ]
+            )
         except subprocess.CalledProcessError:
             print("ERROR: uv pip install failed.")
             sys.exit(1)

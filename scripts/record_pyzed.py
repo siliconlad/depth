@@ -85,7 +85,11 @@ def make_camera_info(
         binning_x=0,
         binning_y=0,
         roi=sensor_msgs.RegionOfInterest(
-            x_offset=0, y_offset=0, height=0, width=0, do_rectify=False,
+            x_offset=0,
+            y_offset=0,
+            height=0,
+            width=0,
+            do_rectify=False,
         ),
     )
 
@@ -227,6 +231,7 @@ def record(args: argparse.Namespace) -> None:
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
+
 
 def main():
     parser = argparse.ArgumentParser(

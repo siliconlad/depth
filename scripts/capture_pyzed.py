@@ -132,9 +132,7 @@ def capture(args: argparse.Namespace) -> None:
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Capture a stereo pair from a ZED camera."
-    )
+    parser = argparse.ArgumentParser(description="Capture a stereo pair from a ZED camera.")
     parser.add_argument(
         "output",
         nargs="?",

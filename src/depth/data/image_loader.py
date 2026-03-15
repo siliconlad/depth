@@ -55,22 +55,22 @@ class StereoImages:
 class ImageLoader:
     def __init__(self, data_dir: Path) -> None:
         self._data_dir = data_dir
-        self._left_data_dir = self._data_dir / 'left'
-        self._right_data_dir = self._data_dir / 'right'
-        self._depth_data_dir = self._data_dir / 'depth'
+        self._left_data_dir = self._data_dir / "left"
+        self._right_data_dir = self._data_dir / "right"
+        self._depth_data_dir = self._data_dir / "depth"
 
         # Read the calibration information
-        with (self._data_dir / 'calibration.json').open('r') as f:
+        with (self._data_dir / "calibration.json").open("r") as f:
             self._calibration = StereoCalibration.model_validate(json.load(f))
 
         self._num_images = self._discover_images(self._left_data_dir)
         num_right = self._discover_images(self._right_data_dir)
-        assert self._num_images == num_right, 'Different number of left and right images!'
+        assert self._num_images == num_right, "Different number of left and right images!"
 
     def _discover_images(self, image_dir: Path) -> int:
-        images = glob((image_dir / '*.jpg').as_posix())
+        images = glob((image_dir / "*.jpg").as_posix())
         idxs = [int(Path(p).stem) for p in images]
-        assert sorted(idxs) == list(range(len(idxs))), 'Images not contiguous!'
+        assert sorted(idxs) == list(range(len(idxs))), "Images not contiguous!"
         return len(idxs)
 
     def _load_image(self, image_path: Path) -> Tensor:
@@ -87,8 +87,8 @@ class ImageLoader:
 
     def __getitem__(self, idx: int) -> StereoImages:
         return StereoImages(
-            left=self._load_image(self._left_data_dir / f'{idx:05d}.jpg'),
-            right=self._load_image(self._right_data_dir / f'{idx:05d}.jpg'),
-            depth=self._load_depth(self._depth_data_dir / f'{idx:05d}.npy'),
-            calib=self._calibration
+            left=self._load_image(self._left_data_dir / f"{idx:05d}.jpg"),
+            right=self._load_image(self._right_data_dir / f"{idx:05d}.jpg"),
+            depth=self._load_depth(self._depth_data_dir / f"{idx:05d}.npy"),
+            calib=self._calibration,
         )
